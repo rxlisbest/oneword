@@ -29,8 +29,12 @@ $def with(data)
             <p>
               <label>Status:</label><br>
 	      <select name="status">
-	      		<option value="0">未完成</option>
-	      		<option value="1">已完成</option>
+	      		$if data[2].status == 0 :
+				<option value="0" selected>未完成</option>
+				<option value="1">已完成</option>
+	      		$if data[2].status == 1:
+				<option value="0">未完成</option>
+				<option value="1" selected>已完成</option>
 	      </select>
             </p>
             <p>

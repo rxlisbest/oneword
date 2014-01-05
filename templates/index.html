@@ -89,9 +89,12 @@ $def with(data)
 		</div>
 	</div>
 	<div class="span-17 last">
-		<div class="notice">hello world</div>
-		<div class="info">hello world</div>
-		<div class="error"><del>hello world</div>
+		$for work in data[2]: 
+			$if work.status == 0 :
+				<div class="error">$work.content</div>
+			$if work.status == 1:
+				<div class="info"><del>$work.content</div>
+		<!--div class="error"><del>hello world</div>
 		<div class="success">hello world</div>
 		<div class="notice">hello world</div>
 		<div class="info">hello world</div>
@@ -100,7 +103,11 @@ $def with(data)
 		<div class="notice">hello world</div>
 		<div class="info">hello world</div>
 		<div class="error"><del>hello world</div>
-		<div class="success">hello world</div>
+		<div class="success">hello world</div-->
+		$for i in range(data[4]):
+			<div class="success">未添加任务... ...</div>
+		<a href="/private/$data[0]/$data[1]-1"><button>上一页</button></a>
+		<a href="/private/$data[0]/$data[1]+1"><button>下一页</button></a>
 	</div>
 	<hr>
 	<div class="prepend-8">

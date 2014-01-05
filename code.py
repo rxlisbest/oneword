@@ -13,7 +13,7 @@ urls = (
 '/','index',
 '/add/(.*)','add',
 '/register','register',
-'/private/(.*)','private',
+'/private/(.*)/(.*)/(.*)','private',
 '/edit/(.*)/(.*)','edit',
 )
 
@@ -26,10 +26,20 @@ class index:
 		todos = db.select('todo')
 		return render.index()
 class private:
-	def GET(self,user):
-		works = db.select('works',where="id="+user)
-		num = len(works)
-		data = [user,works,num]
+	def GET(self,user,status,page):
+		per_page = 12
+		off = (int(page)-1)*12
+		num = db.query("select count(0) as num from works where id = "+user)[0]["num"]
+		if num % per_page == 0:
+			pages = num / per_page
+		else: 
+			pages = num / per_page + 1
+		if int(status) == 2:
+			works = db.select('works',where="id="+user,limit=per_page,offset=off)
+		else:
+			works = db.select('works',where="id="+user+" and status="+status,limit=per_page,offset=off)
+		blank = 12 - len(works)
+		data = [user,page,works,num,blank]
 		return render.index(data)
 class register:
 	def GET(self):
