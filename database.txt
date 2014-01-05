@@ -1,4 +1,4 @@
-users表:id int,password int,login_name char,nickname char,createtime datetime,e_mail char
+users表:id int,password int,login_name char,nickname char,createtime datetime,e_mail char,motto char
 
 works表:w_id int,id int,content char,status int,createtime datetime
 
