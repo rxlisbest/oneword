@@ -1,0 +1,110 @@
+$def with(data)
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Blueprint test pages</title>
+
+    <!-- Framework CSS -->
+    <link rel="stylesheet" href="/statics/css/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/statics/css/calendar.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="/statics/css/print.css" type="text/css" media="print">
+    <script src="/statics/js/calendar.js" type="text/javascript"></script>
+    <!--[if lt IE 8]><link rel="stylesheet" href="/statics/css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+    <style type="text/css" media="screen">
+    	h4 {text-indet:2em;}
+      p, table, hr, .box { margin-bottom:25px; }
+      .box p { margin-bottom:10px; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+    	<hr>
+	<div class="span-22">
+		<h1>Candy One Day</h1>
+	</div>
+	<div class="span-2 last">
+		<a href="/add/$data[0]"><button>ADD</button></a>
+	</div>
+    	<hr>
+		<h4><em>&nbsp;&nbsp;&nbsp;&nbsp;We Are Responsible for Our Life. And nobody else. Although all success requires the assistance and cooperation of others, our success can never be left to anyone else. Luck is not a strategy.</em></h4>
+    	<hr>
+	<div class="span-6">
+		<div class="box">
+			<img src="/statics/img/me.jpg" />
+			<hr>
+			<p>用户名 : 芮兴龙</p>
+			<p>座佑铭 : 天行健，君子以自强不息，地势坤，君子以厚德载物。</p>
+		</div>
+		<div class="box">
+ <div class="Calendar"> 
+ <div id="idCalendarPre"><<</div> 
+ <div id="idCalendarNext">>></div> 
+ <span id="idCalendarYear">2008</span>年 <span id="idCalendarMonth">8</span>月 
+ <table cellspacing="0"> 
+ <thead> 
+ <tr> 
+ <td>日</td> 
+ <td>一</td> 
+ <td>二</td> 
+ <td>三</td> 
+ <td>四</td> 
+ <td>五</td> 
+ <td>六</td> 
+ </tr> 
+ </thead> 
+ <tbody id="idCalendar"> 
+ </tbody> 
+ </table> 
+ </div> 
+ <script language="JavaScript"> 
+ var cale = new Calendar("idCalendar", { 
+ SelectDay: new Date().setDate(10), 
+ onSelectDay: function(o){ o.className = "onSelect"; }, 
+ onToday: function(o){ o.className = "onToday"; }, 
+ onFinish: function(){ 
+ $("idCalendarYear").innerHTML = this.Year; $("idCalendarMonth").innerHTML = this.Month; 
+ var flag = [1,2,3]; 
+ for(var i = 0, len = flag.length; i < len; i++){ 
+ this.Days[flag[i]].innerHTML = "<a href='javascript:void(0);' onclick=\"alert('您选择的日期是："+this.Year+"/"+this.Month+"/"+flag[i]+"');return false;\">" + flag[i] + "</a>"; 
+ } 
+ } 
+ }); 
+ $("idCalendarPre").onclick = function(){ cale.PreMonth(); } 
+ $("idCalendarNext").onclick = function(){ cale.NextMonth(); } 
+ </script>
+		</div>
+	</div>
+	<div class="span-1">
+		<div class="box">
+			<h3>己完成</h3>	
+		</div>
+		<div class="box">
+			<h3>未完成</h3>	
+		</div>
+		<div class="box">
+			<h3>全部</h3>	
+		</div>
+	</div>
+	<div class="span-17 last">
+		<div class="notice">hello world</div>
+		<div class="info">hello world</div>
+		<div class="error"><del>hello world</div>
+		<div class="success">hello world</div>
+		<div class="notice">hello world</div>
+		<div class="info">hello world</div>
+		<div class="error"><del>hello world</div>
+		<div class="success">hello world</div>
+		<div class="notice">hello world</div>
+		<div class="info">hello world</div>
+		<div class="error"><del>hello world</div>
+		<div class="success">hello world</div>
+	</div>
+	<hr>
+	<div class="prepend-8">
+		<h4>Copyright © 1998 - 2013 All Rights Reserved</h4>
+	</div>
+  </body>
+</html>

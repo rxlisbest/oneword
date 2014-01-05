@@ -1,0 +1,38 @@
+.Calendar { 
+font-family:Verdana; 
+font-size:9pt; 
+text-align:center; 
+width:198px; 
+height:158px; 
+padding:0px; 
+line-height:1.5em; 
+} 
+.Calendar a{ 
+color:#0066CC; 
+} 
+.Calendar table{ 
+width:100%; 
+border:0; 
+} 
+.Calendar table thead{color:#acacac;} 
+.Calendar table td { 
+font-size: 11px; 
+padding:1px; 
+} 
+#idCalendarPre{ 
+cursor:pointer; 
+float:left; 
+padding-right:5px; 
+} 
+#idCalendarNext{ 
+cursor:pointer; 
+float:right; 
+padding-right:5px; 
+} 
+#idCalendar td.onToday { 
+font-weight:bold; 
+color:#C60; 
+} 
+#idCalendar td.onSelect { 
+font-weight:bold; 
+} 
