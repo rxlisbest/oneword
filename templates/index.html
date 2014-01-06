@@ -79,21 +79,23 @@ $def with(data)
 	</div>
 	<div class="span-1">
 		<div class="box">
-			<h3>己完成</h3>	
+			<a href="/private/$data[0]/1/1"><h3>己完成</h3></a>
 		</div>
 		<div class="box">
-			<h3>未完成</h3>	
+			<a href="/private/$data[0]/0/1"><h3>未完成</h3></a>
+			<h3></h3>	
 		</div>
 		<div class="box">
-			<h3>全部</h3>	
+			<a href="/private/$data[0]/2/1"><h3>全部</h3></a>
+			<h3></h3>	
 		</div>
 	</div>
 	<div class="span-17 last">
 		$for work in data[2]: 
 			$if work.status == 0 :
-				<div class="error">$work.content</div>
+				<div class="error">$work.content<p class="push-15"><a href="/edit/$data[0]/$work.w_id">√</a>&nbsp;&nbsp;<a href="/delete/$data[0]/$work.w_id">X</a></p></div>
 			$if work.status == 1:
-				<div class="info"><del>$work.content</div>
+				<div class="info"><del>$work.content<p class="push-15"><a href="/edit/$data[0]/$work.w_id">√</a>&nbsp;&nbsp;<a href="/delete/$data[0]/$work.w_id">X</a></p></div>
 		<!--div class="error"><del>hello world</div>
 		<div class="success">hello world</div>
 		<div class="notice">hello world</div>
@@ -105,13 +107,14 @@ $def with(data)
 		<div class="error"><del>hello world</div>
 		<div class="success">hello world</div-->
 		$for i in range(data[4]):
-			<div class="success">未添加任务... ...</div>
-		<a href="/private/$data[0]/$data[1]-1"><button>上一页</button></a>
-		<a href="/private/$data[0]/$data[1]+1"><button>下一页</button></a>
+			<div class="success">未添加任务... ...<p class="push-15"><a href="/add/$data[0]">+</a></p></div>
+		$if data[5] > 0:
+			<a href="/private/$data[0]/$data[8]/$data[5]"><button>上一页</button></a>
+		$if data[6] < data[7]:
+			<a href="/private/$data[0]/$data[8]/$data[6]"><button>下一页</button></a>
 	</div>
 	<hr>
 	<div class="prepend-8">
 		<h4>Copyright © 1998 - 2013 All Rights Reserved</h4>
 	</div>
-  </body>
-</html>
+  </body> </html>
