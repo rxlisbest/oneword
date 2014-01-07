@@ -30,36 +30,33 @@ class index:
 
 class login:
 	def GET(self):
-		return render.login()
+		if session.login ==0:
+			return render.login()
+		else:
+			user = session.login
+			return 'You have logged'
 	def POST(self):
 		post = web.input()
 		user = post.user
 		pd = post.pd
 		i = db.select("users",where="login_name='"+user+"' and password='"+pd+"'")
-		user = i[0].id
 		if len(i) > 0:
-			session.login=1
-			raise web.seeother('/private/'+str(user)+"/2/1")	
+			user = i[0].id
+			session.login=user
+			web.redirect('/private/'+str(user)+"/2/1")	
 		else:
 			print "user error or password error"
-			raise web.seeother('/login')	
+			web.redirect('/login')	
 
 class logout:
 	def GET(self):
-		session.login=0
-		session.kill()
-		raise web.seeother('/login')	
-
-class logged:
-	def GET(self):
-		if session.login ==1:
-			return True
-		else:
-			return False
+		session.login = 0
+		session.kill()	
+		return 'You are logout'
 
 class private:
 	def GET(self,user,status,page=1):
-		if logged():
+		if session.login > 0:
 			per_page = 12
 			off = (int(page)-1)*12
 			if status ==2:
@@ -79,6 +76,8 @@ class private:
 			nextpage = int(page) +1	
 			data = [user,page,works,num,blank,lastpage,nextpage,pages,status]
 			return render.index(data)
+		else:
+			return '111'
 
 class register:
 	def GET(self):
@@ -118,6 +117,6 @@ class delete:
 app = web.application(urls, globals())
 
 curdir = os.path.dirname(__file__)
-session = web.session.Session(app, web.session.DiskStore(curdir + '/' + 'sessions'),)
+session = web.session.Session(app, web.session.DiskStore(curdir + '/' + 'sessions'),initializer={'login':0})
 
 application = app.wsgifunc()
